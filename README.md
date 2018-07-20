@@ -18,6 +18,6 @@
   >def echo_message(message):
     >cid = message.chat.id
     
-    >if message.text.lower() == "hola":
-      >bot.send_message( cid, 'hola amigo')
+    if message.text.lower() == "hola":
+      bot.send_message( cid, 'hola amigo')
   
