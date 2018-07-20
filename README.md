@@ -4,7 +4,7 @@
 
 ## Documentación TELEGRAM BOT API (aquí está toda la información que se necesita para añadir funcionalidades a un bot): https://core.telegram.org/bots/api
 
-## Las funcionalidades del bot están en bot.py
+## Las funcionalidades del bot están en bot.py  -> https://github.com/boterostg/botBasicoGlitch/blob/master/bot.py
 
 ## Primera clase 19/07/2018 Explicación de como utilizar glitch, bot reply y bot send message:
    
