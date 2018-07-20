@@ -1,4 +1,4 @@
-# Python3 Telegram Bot  
+# Bot basico de ejemplo hecho en Python3 
 ### server.py  
 > Contains server logic and delivers telegram updates to bot logic.  
 
