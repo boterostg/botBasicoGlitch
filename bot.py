@@ -17,8 +17,8 @@ def send_welcome(message):			 # el mensaje escrito en la variable más arriba de
 
   
 @bot.message_handler(commands=['ayuda'])		# Ejemplo de comando /ayuda que en vez de pasarle una variable, directamente escribimos 
-def ayuda(message):					# 'ahora mismo te ayudo'
-	bot.reply_to(message, 'ahora mismo te ayudo')
+def ayuda(message):					
+	bot.reply_to(message, 'ahora mismo te ayudo')	# el bot responde 'ahora mismo te ayudo' al mensaje
   
 
   
