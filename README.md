@@ -9,15 +9,15 @@
 ## Primera clase 19/07/2018 Explicación de como utilizar glitch, bot reply y bot send message:
   
   ### Ejemplo creación de un comando
-  @bot.message_handler(commands=['start'])
-  def nombreComando(message):
-    bot.reply_to(message, 'Has iniciado el bot')
+  >@bot.message_handler(commands=['start'])
+  >def nombreComando(message):
+    >bot.reply_to(message, 'Has iniciado el bot')
     
   ### Ejemplo respuestas bot
-  @bot.message_handler(func=lambda message: True)
-  def echo_message(message):
-    cid = message.chat.id
+  >@bot.message_handler(func=lambda message: True)
+  >def echo_message(message):
+    >cid = message.chat.id
     
-    if message.text.lower() == "hola":
-      bot.send_message( cid, 'hola amigo')
+    >if message.text.lower() == "hola":
+      >bot.send_message( cid, 'hola amigo')
   
