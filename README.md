@@ -1,2 +1,6 @@
-# botBasicoGlitch
-Bot básico para usarlo en www.glitch.com , el cual irá creciendo conforme hagamos tutoriales/clases/dudas/llamadas en discord.
+# Python3 Telegram Bot  
+### server.py  
+> Contains server logic and delivers telegram updates to bot logic.  
+
+### bot.py  
+> Holds bot logic isolated from server code, can be expanded without touching server.
