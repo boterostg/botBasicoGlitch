@@ -3,7 +3,8 @@ from os import environ
 
 bot = telebot.TeleBot(environ['TELEGRAM_TOKEN']) #Token del bot 
 
-bot_text = '''				# Variable que se utilizará en el comando /start para enviarlo como el texto del mensaje del bot
+# Variable que se utilizará en el comando /start para enviarlo como el texto del mensaje del bot
+bot_text = '''				
 Howdy, how are you doing?
 Source code on https://glitch.com/~{}
 '''.format(environ['PROJECT_NAME'])
