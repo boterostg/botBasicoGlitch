@@ -8,6 +8,8 @@ Howdy, how are you doing?
 Source code on https://glitch.com/~{}
 '''.format(environ['PROJECT_NAME'])
 
+# Inicio lección 1- 19/07/2018
+
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
 	bot.reply_to(message, bot_text)
@@ -62,8 +64,8 @@ def echo_message(message):
     
     bot.send_message(cid, 'minion')
     bot.send_photo( cid, open( 'assets/minionglitch.jpg', 'rb'))
-  
-  
+	
+#Fin lección 1 - 19/07/218
   
   
   
