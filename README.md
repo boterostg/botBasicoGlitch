@@ -10,8 +10,8 @@
   
   ### Ejemplo creación de un comando
   >@bot.message_handler(commands=['start'])
-  >def nombreComando(message):
-    >bot.reply_to(message, 'Has iniciado el bot')
+  def nombreComando(message):
+    bot.reply_to(message, 'Has iniciado el bot')
     
   ### Ejemplo respuestas bot
   >@bot.message_handler(func=lambda message: True)
