@@ -2,8 +2,7 @@
 
 ## Esto es posible gracias a https://github.com/sanguchi que creó toda la estructura del proyecto y el siguiente tutorial de como utilizarlo: http://telegra.ph/Creando-Bots-en-Telegram-06-09
 
-## Documentación para crear las funciones de bot.py:
-#https://core.telegram.org/bots/api
+## Documentación para crear las funciones de bot.py: https://core.telegram.org/bots/api
 
 ## Primera clase 19/07/2018 Explicación de como utilizar glitch, bot reply y bot send message:
   
