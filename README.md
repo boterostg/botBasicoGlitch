@@ -1,6 +1,6 @@
 # Bot basico de ejemplo para Telegram, hecho en Python3 para mostrar ejemplos de funciones varias.
 
-## Este proyecto surge de el grupo de Telegram http://t.me/boterostg . Dado que hay mucha gente con ganas de aprender hemos decidido crear un bot desde cero con https://glitch.com/ y Python3, se utilizará el bot como ejemplo mientras se dan clases/charlas y poco a poco irá aumentando. Cualquier duda sobre el código o gente interesada en colaborar solo tiene que entrar al grupo :)
+## Este proyecto surge del grupo de Telegram http://t.me/boterostg . Dado que hay mucha gente con ganas de aprender hemos decidido crear un bot desde cero con https://glitch.com/ y Python3, se utilizará el bot como ejemplo mientras se dan clases/charlas y poco a poco irá aumentando. Cualquier duda sobre el código o gente interesada en colaborar solo tiene que entrar al grupo :)
 
 ## Esto es posible gracias a https://github.com/sanguchi que creó toda la estructura del proyecto y el siguiente tutorial de como utilizarlo: http://telegra.ph/Creando-Bots-en-Telegram-06-09
 
