@@ -18,13 +18,13 @@ def send_welcome(message):
   
 @bot.message_handler(commands=['ayuda'])		# Ejemplo de comando /ayuda que en vez de pasarle una variable, directamente escribimos 
 def ayuda(message):					
-	bot.reply_to(message, 'ahora mismo te ayudo')	# El bot responde 'ahora mismo te ayudo' al mensaje
+	bot.reply_to(message, 'ahora mismo te ayudo')   # El bot responde 'ahora mismo te ayudo' al mensaje
   
 
   
 @bot.message_handler(func=lambda message: True)		# Respuestas del bot
 def echo_message(message):
-  cid = message.chat.id 				# Guardamos en al variale cid el id de el mensaje recibido 
+  cid = message.chat.id 				# Guardamos en la variale cid el id de el mensaje recibido 
   
   if message.text.lower() == "holi":			# Comparamos el texto el mensaje si es igual a 'holi'
    
@@ -43,14 +43,14 @@ def echo_message(message):
 	
       bot.send_message( cid, 'Holi manuel')		# Aquí envia al chat que le hemos hablado 'Holi manuel'
 
-      bot.send_message( 115659666, 'Holi manuel')	# Aquí probamos a pasarle en vez de cid un id de un usuario y le enviará el mensaje por mensaje 
+      bot.send_message( 115659666, 'Holi manuel')	# Aquí probamos a pasarle en vez de cid, un id de un usuario y le enviará el mensaje por mensaje 
 							#privado
 
-    else:						# Si no se da ninguno de los resultados de arriba hará lo siguiente
+    else:						# Si no se da ninguno de los resultados de arriba hará lo siguiente:
       
        bot.send_message( cid, 'No estás registrado')	# Enviará por el chat el mensaje 'No estás registrado'
   
-  if message.text.lower() == "mensaje":			# Aquí probamos un if comparandolo con un String(una cadena de carácteres
+  if message.text.lower() == "mensaje":			# Aquí probamos un if comparandolo con un String(una cadena de carácteres)
 		
     bot.send_message( cid, 'mensaje')			# Si es así contestará 'mensaje'
     
