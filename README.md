@@ -1,6 +1,6 @@
 # BOT BÁSICO PARA TELEGRAM 
 
-## Este bot esta hecho en Python3 para mostrar ejemplos de funciones de bots de Telegram.
+## Este bot esta creado con Python3 con el fin de mostrar ejemplos de funciones de bots de Telegram. A continuación sigue las indicaciones:
 
 ## 1.- Primero de todo leed el tutorial que está explicado aquí -> http://telegra.ph/Creando-Bots-en-Telegram-06-09
 
