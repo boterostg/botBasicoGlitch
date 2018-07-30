@@ -4,7 +4,7 @@
 
 ## 1.- Primero de todo leed el tutorial que está explicado aquí -> http://telegra.ph/Creando-Bots-en-Telegram-06-09
 
-## 2.- Si habéis leído la explicación y habéis seguido todos los pasos ya podéis mirar el glitch del bot: (Donde realmente está el ejemplo entero) : entrad en este enlace https://glitch.com/~botbasico y luego pinchad en View Source para ver el proyecto bot y meter las funciones que hay de ejemplo y adaptarlas a vuestro bot :D
+## 2.- Si habéis leído la explicación y habéis seguido todos los pasos ya podéis mirar el glitch del bot, entrad en este enlace https://glitch.com/~botbasico y luego pinchad en View Source para ver el proyecto del bot. Podéis mirar funciones que hay de ejemplo y adaptarlas a vuestro bot :D
 
 ## 3.- Documentación: TELEGRAM BOT API (aquí está toda la información que se necesita para añadir funcionalidades a un bot): https://core.telegram.org/bots/api
 
