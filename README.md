@@ -14,8 +14,12 @@
 
 ## *Esto es posible gracias a https://github.com/sanguchi que creó toda la estructura del proyecto y el siguiente tutorial de como utilizarlo: http://telegra.ph/Creando-Bots-en-Telegram-06-09
 
-## [1] Primera clase 19/07/2018 Explicación de como utilizar glitch, bot reply y bot send message:
-   
+## [1] Primera clase 19/07/2018 Explicación de como utilizar glitch, comando de un bot y bot send message:
+
+### Cómo crear tu bot y empezar con glitch:
+
+http://telegra.ph/Creando-Bots-en-Telegram-06-09
+
 ### Ejemplo creación de un comando
 ```python
 @bot.message_handler(commands=['start'])
