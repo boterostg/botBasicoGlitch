@@ -1,4 +1,6 @@
-# Bot básico de ejemplo para Telegram, hecho en Python3 para mostrar ejemplos de funciones varias.
+# BOT BÁSICO PARA TELEGRAM 
+
+## Este bot esta hecho en Python3 para mostrar ejemplos de funciones de bots de Telegram.
 
 # Glitch del bot: (Donde realmente está el ejemplo entero) : entrad en este enlace https://glitch.com/~botbasico y luego pinchad en View Source para ver el proyecto.
 
