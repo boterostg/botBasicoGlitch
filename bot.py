@@ -56,6 +56,14 @@ def echo_message(message):
     
 	
 #Fin lección 1 - 19/07/218
+
+  if "boti di" in message.text.lower():               # Comparamos el texto el mensaje si es igual a "boti di"
+    
+    cid = message.chat.id                              #Id del chat
+    mensaje=message.text                               #Mensaje completo
+    respuesta = ' '.join(mensaje.split(" ")[2:])       #Respuesta
+    bot.send_message(cid, respuesta)                   #El bot envía la respuesta
+
   
   
   
