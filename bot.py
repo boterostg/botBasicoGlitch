@@ -64,15 +64,53 @@ def echo_message(message):
     respuesta = ' '.join(mensaje.split(" ")[2:])       #Respuesta
     bot.send_message(cid, respuesta)                   #El bot envía la respuesta
 
+#Respuesta a la entrada de un usuario al grupo 
+@bot.message_handler(func=lambda message: True, content_types=['new_chat_members'])
+def command_bienvenida(m):
+    cid = m.chat.id                                    #Id del chat
+    cname = m.chat.title                               #Nombre del grupo
+    bienvenida = ""                                    #Variable dónde guardaremos el mensaje de bienvenida
+    
+    if (m.new_chat_member.username is None):           #Si el usuario no tiene nickname
+        nun = m.new_chat_member.first_name             #Guardamos el primer nombre del usuario
+        
+        if (m.new_chat_member.last_name is not None):  #Si el usuario tiene apellido
+            nun += " "                        
+            nun += m.new_chat_member.last_name         #Se guarda el apellido
+            
+        else:                                          #Si no tiene apellido
+            bienvenida = "Bienvenido al grupo"         #Se guarda "Bienvenido al grupo"
+            bienvenida += str(cname)                   #Se le añade el nombre del chat detras de "Bienvenido al grupo"
+            bienvenida += " "
+    else:                                              #Si el usuario tiene nickname
+        nun = m.new_chat_member.username               #Se guarda en nun el nickname del usuario
+        bienvenida = "Bienvenido al grupo "            #Se guarda "Bienvenido al grupo"
+        bienvenida += str(cname)                       #Se le añade el nombre del chat detras de "Bienvenido al grupo"
+        bienvenida += " @"
+
+    bot.send_message(cid, str(bienvenida) + str(nun))  #Se envía el mensaje de bienvenida concatenando el nombre/nickname del usuario
+
+#Respuesta a la salida de un usuario del grupo 
+@bot.message_handler(func=lambda message: True, content_types=['left_chat_member'])
+def command_bye(m):
+    cid = m.chat.id                                    #Id del grupo
+    despedida = ""                                     #Variable dónde guardaremos el mensaje de despedida
+    
+    if (m.left_chat_member.username is None):          #Si el usuario no tiene nickname
+        nun = m.left_chat_member.first_name            #Guardamos el primer nombre del usuario
+        
+        if (m.left_chat_member.last_name is not None): #Si el usuario tiene apellido
+            nun += " "
+            nun += m.left_chat_member.last_name        #Se guarda el apellido
+            
+    else:                                              #Si el usuario tiene nickname
+        nun = m.left_chat_member.username              #Se guarda en nun el nickname del usuario
+        despedida = "Hasta luego "                     #Se guarda "Hasta luego"
+        despedida += " @"
+
+    bot.send_message(cid, str(despedida) + str(nun))   #Se envía el mensaje de despedida concatenando el nombre/nickname del usuario
+
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
+ 
   
 bot.set_webhook("https://{}.glitch.me/{}".format(environ['PROJECT_NAME'], environ['TELEGRAM_TOKEN']))
