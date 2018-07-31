@@ -20,7 +20,26 @@ def send_welcome(message):
 def ayuda(message):					
 	bot.reply_to(message, 'ahora mismo te ayudo')   # El bot responde 'ahora mismo te ayudo' al mensaje
   
+#Inicio charla 2 - 31/07/2018
+  
+@bot.message_handler(commands=['ruleta'])
+def ruleta(message):
 
+  cid = message.chat.id
+  nombreUsuario = message.from_user.username
+  idUsuario = message.from_user.id
+  rnd = randrange(0, int(5))
+
+  if rnd == 4:
+    bot.send_message(cid, "Pummmm tas muelto @" + nombreUsuario )
+    bot.kick_chat_member(cid,idUsuario)
+    bot.unban_chat_member(cid, idUsuario)
+
+  else:
+
+    bot.send_message(cid, "Te has salvado amijo @" + nombreUsuario)
+  
+#Fin charla 2 - 31/07/2018
   
 @bot.message_handler(func=lambda message: True)		# Respuestas del bot
 def echo_message(message):
@@ -57,12 +76,35 @@ def echo_message(message):
 	
 #Fin lección 1 - 19/07/218
 
+#Inicio charla 2 - 31/07/2018
+
+
+
   if "boti di" in message.text.lower():               # Comparamos el texto el mensaje si es igual a "boti di"
     
     cid = message.chat.id                              #Id del chat
     mensaje=message.text                               #Mensaje completo
     respuesta = ' '.join(mensaje.split(" ")[2:])       #Respuesta
     bot.send_message(cid, respuesta)                   #El bot envía la respuesta
+
+@bot.message_handler(commands=['ruleta'])
+def ruleta(message):
+
+  cid = message.chat.id
+  nombreUsuario = message.from_user.username
+  idUsuario = message.from_user.id
+  rnd = randrange(0, int(5))
+
+  if rnd == 4:
+    bot.send_message(cid, "Pummmm tas muelto @" + nombreUsuario )
+    bot.kick_chat_member(cid,idUsuario)
+    bot.unban_chat_member(cid, idUsuario)
+
+  else:
+
+    bot.send_message(cid, "Te has salvado amijo @" + nombreUsuario)
+  
+
 
 #Respuesta a la entrada de un usuario al grupo 
 @bot.message_handler(func=lambda message: True, content_types=['new_chat_members'])
@@ -110,7 +152,7 @@ def command_bye(m):
 
     bot.send_message(cid, str(despedida) + str(nun))   #Se envía el mensaje de despedida concatenando el nombre/nickname del usuario
 
-  
+ #Fin charla 2 - 31/07/2018
  
   
 bot.set_webhook("https://{}.glitch.me/{}".format(environ['PROJECT_NAME'], environ['TELEGRAM_TOKEN']))
