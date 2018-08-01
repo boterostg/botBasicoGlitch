@@ -45,7 +45,7 @@ def echo_message(message):
 @bot.message_handler(func=lambda message: True)
 def echo_message(message):
   cid = message.chat.id
-  if "bot di" in message.text.lower():                 
+  if  message.text.lower().startswith('bot di'):                 
     mensaje=message.text                              
     respuesta = ' '.join(mensaje.split(" ")[2:])   
     bot.send_message(cid, respuesta)  
