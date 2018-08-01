@@ -22,22 +22,24 @@ def ayuda(message):
   
 #Inicio charla 2 - 31/07/2018
   
+#Comando para simular una ruleta rusa en grupos de Telegram
 @bot.message_handler(commands=['ruleta'])
 def ruleta(message):
 
-  cid = message.chat.id
-  nombreUsuario = message.from_user.username
-  idUsuario = message.from_user.id
-  rnd = randrange(0, int(5))
+  cid = message.chat.id					#Id del chat
+  nombreUsuario = message.from_user.username		#Nicknmae del usuario
+  idUsuario = message.from_user.id			#Id del usuario
+  rnd = randrange(0, int(5))				#Generación de número aleatorio entre 0 y 5
 
-  if rnd == 4:
-    bot.send_message(cid, "Pummmm tas muelto @" + nombreUsuario )
-    bot.kick_chat_member(cid,idUsuario)
-    bot.unban_chat_member(cid, idUsuario)
+  if rnd == 4:						#Si el número aleatorio es igual a 4
+	
+    bot.send_message(cid, "Pummmm estas muerto @" + nombreUsuario )	#El bot envía mensaje de que has muerto y añade el nickname del usuario en el mensaje
+    bot.kick_chat_member(cid,idUsuario)					#El bot expulsa al usuario del grupo restringiendolo del grupo
+    bot.unban_chat_member(cid, idUsuario)				#El bot quita la restrinción al usuario para que así pueda volver al grupo
 
-  else:
+  else:									#Si el número aleatorio es diferente de 4
 
-    bot.send_message(cid, "Te has salvado amijo @" + nombreUsuario)
+    bot.send_message(cid, "Te has salvado amigo @" + nombreUsuario)	#El bot envía un mensaje diciendo que se ha salvado añadiendo el nickname del usuario
   
 #Fin charla 2 - 31/07/2018
   
