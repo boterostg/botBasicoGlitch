@@ -37,3 +37,17 @@ def echo_message(message):
     bot.send_message( cid, 'hola amigo')
 
 ```
+## [2] Segunda clase 31/07/2018 Explicación de como utilizar split, comando de saludo, despedida y comando de la ruleta rusa en el cual se aplica random y expulsión de usuarios de un grupo.
+
+### Ejemplo de como utilizar split
+
+```python
+@bot.message_handler(func=lambda message: True)
+def echo_message(message):
+  cid = message.chat.id
+  if "bot di" in message.text.lower():                 
+    mensaje=message.text                              
+    respuesta = ' '.join(mensaje.split(" ")[2:])   
+    bot.send_message(cid, respuesta)  
+```
+    
