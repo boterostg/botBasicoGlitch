@@ -79,3 +79,25 @@ def command_bienvenida(m):
 
     bot.send_message(cid, str(bienvenida) + str(nun))
  ```
+### Respuesta a la salida de un usuario del grupo 
+
+```python
+@bot.message_handler(func=lambda message: True, content_types=['left_chat_member'])
+def command_bye(m):
+    cid = m.chat.id                                    
+    despedida = ""                                     
+    
+    if (m.left_chat_member.username is None):         
+        nun = m.left_chat_member.first_name           
+        
+        if (m.left_chat_member.last_name is not None): 
+            nun += " "
+            nun += m.left_chat_member.last_name       
+            
+    else:                                              
+        nun = m.left_chat_member.username             
+        despedida = "Hasta luego "                    
+        despedida += " @"
+
+    bot.send_message(cid, str(despedida) + str(nun))   
+```
