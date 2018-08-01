@@ -101,3 +101,23 @@ def command_bye(m):
 
     bot.send_message(cid, str(despedida) + str(nun))   
 ```
+### Comando para simular una ruleta rusa en grupos de Telegram
+
+```python
+@bot.message_handler(commands=['ruleta'])
+def ruleta(message):
+
+  cid = message.chat.id					
+  nombreUsuario = message.from_user.username		
+  idUsuario = message.from_user.id			
+  rnd = randrange(0, int(5))				
+  if rnd == 4:						
+	
+    bot.send_message(cid, "Pummmm estas muerto @" + nombreUsuario )	
+    bot.kick_chat_member(cid,idUsuario)					
+    bot.unban_chat_member(cid, idUsuario)				
+
+  else:								
+
+    bot.send_message(cid, "Te has salvado amigo @" + nombreUsuario)	
+```
