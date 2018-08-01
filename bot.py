@@ -81,31 +81,17 @@ def echo_message(message):
 #Inicio charla 2 - 31/07/2018
 
 
-
-  if "boti di" in message.text.lower():               # Comparamos el texto el mensaje si es igual a "boti di"
+  if "bot di" in message.text.lower():                 # Comparamos el texto el mensaje si es igual a "boti di"
     
     cid = message.chat.id                              #Id del chat
     mensaje=message.text                               #Mensaje completo
-    respuesta = ' '.join(mensaje.split(" ")[2:])       #Respuesta
+
+    respuesta = ' '.join(mensaje.split(" ")[2:])       #Respuesta = el texto que venga detrás de bot di.
+						       #Ejemplo bot di hola. Con este código se guardará el "hola" porque se guardará
+						       # todo lo que se escriba a partir del tercer espacio.
+			
     bot.send_message(cid, respuesta)                   #El bot envía la respuesta
 
-@bot.message_handler(commands=['ruleta'])
-def ruleta(message):
-
-  cid = message.chat.id
-  nombreUsuario = message.from_user.username
-  idUsuario = message.from_user.id
-  rnd = randrange(0, int(5))
-
-  if rnd == 4:
-    bot.send_message(cid, "Pummmm tas muelto @" + nombreUsuario )
-    bot.kick_chat_member(cid,idUsuario)
-    bot.unban_chat_member(cid, idUsuario)
-
-  else:
-
-    bot.send_message(cid, "Te has salvado amijo @" + nombreUsuario)
-  
 
 
 #Respuesta a la entrada de un usuario al grupo 
