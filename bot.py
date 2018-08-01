@@ -58,7 +58,7 @@ def echo_message(message):
 
     if id == 239822769:					# Comparamos el id guardado del usuario con un id que le hemos pasado
 		
-        bot.send_message( cid, 'Hola mi creador 😙')	# Si es igual responde el mensaje que hemos introducido al chat indicado
+        bot.send_message( cid, 'Hola mi creador 😙')    # Si es igual responde el mensaje que hemos introducido al chat indicado
         
     elif id == 270803389 :				# En este caso el id lo comparamos con otra id diferente 
 	
