@@ -51,3 +51,31 @@ def echo_message(message):
     bot.send_message(cid, respuesta)  
 ```
     
+### Respuesta a la entrada de un usuario al grupo 
+
+```python
+@bot.message_handler(func=lambda message: True, content_types=['new_chat_members'])
+def command_bienvenida(m):
+    cid = m.chat.id                                   
+    cname = m.chat.title                              
+    bienvenida = ""                                    
+    
+    if (m.new_chat_member.username is None):          
+        nun = m.new_chat_member.first_name            
+        
+        if (m.new_chat_member.last_name is not None): 
+            nun += " "                        
+            nun += m.new_chat_member.last_name         
+            
+        else:                                          
+            bienvenida = "Bienvenido al grupo"         
+            bienvenida += str(cname)                   
+            bienvenida += " "
+    else:                                              
+        nun = m.new_chat_member.username               
+        bienvenida = "Bienvenido al grupo "            
+        bienvenida += str(cname)                      
+        bienvenida += " @"
+
+    bot.send_message(cid, str(bienvenida) + str(nun))
+ ```
