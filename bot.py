@@ -81,7 +81,7 @@ def echo_message(message):
 #Inicio charla 2 - 31/07/2018
 
 
-  if "bot di" in message.text.lower():                 # Comparamos el texto el mensaje si es igual a "boti di"
+  if message.text.lower().startswith('bot di'):        # Comprobamos si el texto el empieza por "bot di"
     
     cid = message.chat.id                              #Id del chat
     mensaje=message.text                               #Mensaje completo
