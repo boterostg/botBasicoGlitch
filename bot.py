@@ -15,6 +15,14 @@ Howdy, how are you doing?
 Source code on https://glitch.com/~{}
 '''.format(environ['PROJECT_NAME'])
 
+
+menuKeyboard = types.InlineKeyboardMarkup()
+menuKeyboard.add(types.InlineKeyboardButton('Ayuda', callback_data='ayuda'),
+           types.InlineKeyboardButton('Creador', callback_data='creador'))
+
+yoNuncaKeyboard = types.InlineKeyboardMarkup()
+yoNuncaKeyboard.add(types.InlineKeyboardButton('Me apunto', callback_data='yo'))
+
 # Inicio lección 1- 19/07/2018
 
 @bot.message_handler(commands=['start', 'help']) 	# Comando /start o /help . Cuando un usuario escriba cualquiera de los comandos 							
