@@ -112,7 +112,8 @@ def echo_message(message):
     
 	
 #Fin lección 1 - 19/07/218
-  #Inicio charla 3 - 08/08/2018
+
+#Inicio charla 3 - 08/08/2018
   if message.text.lower().startswith('participo con el numero'):
 
       cid = message.chat.id
@@ -129,7 +130,9 @@ def echo_message(message):
       else:
         bot.send_message(cid, "Has fallado, el número era " + str(rnd))
 
-  #Fin charla 3 - 08/08/2018
+#Fin charla 3 - 08/08/2018
+
+
 #Inicio charla 2 - 31/07/2018
 
 
