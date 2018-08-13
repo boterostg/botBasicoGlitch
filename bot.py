@@ -1,6 +1,11 @@
-import telebot			#Importaciones
-from os import environ	
+import telebot
+from telebot import *
+from os import environ
+
 from random import randrange
+
+import json
+import requests
 
 bot = telebot.TeleBot(environ['TELEGRAM_TOKEN']) #Token del bot 
 
