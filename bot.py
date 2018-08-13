@@ -23,6 +23,27 @@ menuKeyboard.add(types.InlineKeyboardButton('Ayuda', callback_data='ayuda'),
 yoNuncaKeyboard = types.InlineKeyboardMarkup()
 yoNuncaKeyboard.add(types.InlineKeyboardButton('Me apunto', callback_data='yo'))
 
+@bot.callback_query_handler(func=lambda call: call.data in ['ayuda', 'creador'])
+def callback_handlerMenu(call):
+  
+  cid = call.message.chat.id
+  mid = call.message.message_id
+  info = call.data
+  
+  #bot.send_message(cid, "Has pulsado " + str(info))
+  
+  if info == "ayuda":
+    #bot.send_message(cid, "Entramos en  " + str(info))
+    
+    bot.edit_message_text("Has pulsado ayuda", cid, mid, reply_markup=menuKeyboard, parse_mode="Markdown")
+    
+  elif info == "creador":
+    
+    #bot.send_message(cid, "Entramos en  " + str(info))
+    
+    bot.edit_message_text("Mi creador es : @batichico" , cid, mid, reply_markup=menuKeyboard , parse_mode="Markdown")
+	
+	
 # Inicio lección 1- 19/07/2018
 
 @bot.message_handler(commands=['start', 'help']) 	# Comando /start o /help . Cuando un usuario escriba cualquiera de los comandos 							
