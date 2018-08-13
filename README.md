@@ -121,3 +121,25 @@ def ruleta(message):
 
     bot.send_message(cid, "Te has salvado amigo @" + nombreUsuario)	
 ```
+
+## [3] Tercera clase 08/08/2018 Explicación de como utilizar split y random para simular un sorteo.
+
+```python
+@bot.message_handler(func=lambda message: True)		# Respuestas del bot
+def echo_message(message):
+    if message.text.lower().startswith('participo con el numero'):
+
+      cid = message.chat.id
+      mensaje=message.text
+      rnd = randrange(0, int(9))
+      respuesta = ' '.join(mensaje.split(" ")[4:])
+
+      #bot.send_message(cid, "la respuesta es: " + respuesta)
+      #bot.send_message(cid, str(rnd))
+
+      if int(respuesta) == rnd:
+	bot.send_message(cid, "Has acertado")
+
+    else:
+      bot.send_message(cid, "Has fallado, el número era " + str(rnd))
+```
