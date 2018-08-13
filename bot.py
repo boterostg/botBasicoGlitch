@@ -114,21 +114,21 @@ def echo_message(message):
 #Fin lección 1 - 19/07/218
 
 #Inicio charla 3 - 08/08/2018
-  if message.text.lower().startswith('participo con el numero'):
+  if message.text.lower().startswith('participo con el numero'): #Escribimos Participo con el numero X (El que sea dentro del 0-10
 
-      cid = message.chat.id
-      mensaje=message.text
-      rnd = randrange(0, int(9))
-      respuesta = ' '.join(mensaje.split(" ")[4:])
+      cid = message.chat.id					 # Guardamos en la variale cid el id de el mensaje recibido.
+      mensaje=message.text                                       # Guardamos el mensaje completo.
+      rnd = randrange(0, int(11))				 # Generamos un número aleatorio del 0 al 10.
+      respuesta = ' '.join(mensaje.split(" ")[4:])               # Obtenemos el numero X del mensaje indicado.
 
-      #bot.send_message(cid, "la respuesta es: " + respuesta)
-      #bot.send_message(cid, str(rnd))
+      # Comparamos el número obtenido con el número aleatorio.
 
-      if int(respuesta) == rnd:
-        bot.send_message(cid, "Has acertado")
+      if int(respuesta) == rnd:					 # Si el número obtenido == número aleatorio.
+        bot.send_message(cid, "Has acertado")			 # El bot envía el mensaje "Has acertado".
 
-      else:
-        bot.send_message(cid, "Has fallado, el número era " + str(rnd))
+      else:							 # Por no es igual.
+	
+        bot.send_message(cid, "Has fallado, el número era " + str(rnd)) # El bot envía el mensaje Has fallado, el número era (el número correspondiente)
 
 #Fin charla 3 - 08/08/2018
 
