@@ -21,7 +21,7 @@ def setTempBan(secB,minB,hourB,dayB,monthB,yearB):
   HoyMinuto = now.minute
   HoySegundo = now.second
   HoyMicrosegundo = now.microsecond
-
+  
   #A continuación creamos nuevas variables para asignar la sanción de tiempo que queramos añadiendo los parámetros recogidos al principio de la función.
   banAno = HoyAno + yearB
   banMes = HoyMes + monthB
@@ -37,7 +37,4 @@ def setTempBan(secB,minB,hourB,dayB,monthB,yearB):
   print(unixBan)                       #Printeamos el resultado de la fecha Unix del ban para asegurar que está bien.
   
   return unixBan        #Devolvemos el valor del tiempo baneado en Unix.
-
-
-
 
