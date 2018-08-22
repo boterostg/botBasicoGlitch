@@ -16,11 +16,12 @@ bot_text = '''
 El bot está creado en https://glitch.com/~{}
 '''.format(environ['PROJECT_NAME'])
 
-
+#Keyboard del menú
 menuKeyboard = types.InlineKeyboardMarkup()
 menuKeyboard.add(types.InlineKeyboardButton('Ayuda', callback_data='ayuda'),
            types.InlineKeyboardButton('Creador', callback_data='creador'))
 
+#Keyboard para apuntarse a la lista
 yoNuncaKeyboard = types.InlineKeyboardMarkup()
 yoNuncaKeyboard.add(types.InlineKeyboardButton('Me apunto', callback_data='yo'))
 
