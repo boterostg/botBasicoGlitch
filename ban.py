@@ -36,5 +36,5 @@ def setTempBan(secB,minB,hourB,dayB,monthB,yearB):
   print("fecha ban :" + str(fechaBan)) #Printeamos el resultado de la fecha del ban para asegurar que está bien.
   print(unixBan)                       #Printeamos el resultado de la fecha Unix del ban para asegurar que está bien.
   
-  return unixBan        #Devolvemos el valor del tiempo baneado en Unix.
+  return unixBan        #Devolvemos el valor del tiempo de la sanción del baneado en Unix.
 
