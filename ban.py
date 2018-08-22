@@ -167,5 +167,5 @@ def antiFloodConfig(idChatGroup,numMessages,typeMute,timeBan):
         cursor.close()
         conn.close()
 
-
+banlevel(12312323,4121223,7,"media")
 
