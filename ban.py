@@ -23,7 +23,7 @@ banAno = HoyAno
 banMes = HoyMes
 banDia = HoyDia 
 banHora = HoyHora 
-banMinuto = HoyMinuto + 10
+banMinuto = HoyMinuto + 10      #Añadimos 10 minutos al tiempo de sanción del baneo
 banSegundo = HoySegundo 
 
 fechaBan = dt = datetime.datetime(banAno, banMes, banDia, banHora, banMinuto,banSegundo) # Al igual que en el ejemplo de arriba, añadimos los parametros de la feha.
