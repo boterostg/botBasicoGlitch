@@ -58,22 +58,18 @@ def setTypeMute(typeMute):
         
     elif typeMute == "media":
         print("Entramos en media")
-        
         typeBanList = [ [x[0],True] if x[0] == "sendMedia" else x for x in typeBanList ]
         
     elif typeMute == "other":
         print("Entramos en media")
-        
         typeBanList = [ [x[0],True] if x[0] == "sendOtherMessages" else x for x in typeBanList ]
         
     elif typeMute == "web":
         print("Entramos en media")
-        
         typeBanList = [ [x[0],True] if x[0] == "sendWebPage" else x for x in typeBanList ]
         
     elif typeMute == "message":
         print("Entramos en media")
-        
         typeBanList = [ [x[0],True] if x[0] == "sendMessages" else x for x in typeBanList ]
  
     print(typeBanList)
@@ -92,49 +88,42 @@ def banlevel(idChatGroup,idUser,level,typeMute):
         
         typeMuteo = setTypeMute(typeMute)
         tiempoban = setTempBan(0,30,0,0,0,0)
-        
         print("El usuario tiene un ban de nivel 1 " + str(idUsuario)  + "estara baneado de: " + str(typeMuteo) + "con este tiempo: " + str(tiempoban) )
         
     if level == 2 :
     
         typeMuteo = setTypeMute(typeMute)
         tiempoban = setTempBan(0,0,8,0,0,0)
-    
         print("El usuario tiene un ban de nivel 2 " + str(idUsuario)  + "estara baneado de: " + str(typeMuteo) + "con este tiempo: " + str(tiempoban) )
     
     if level == 3 :
     
         typeMuteo = setTypeMute(typeMute)
         tiempoban = setTempBan(0,0,0,1,0,0)
-    
         print("El usuario tiene un ban de nivel 3 " + str(idUsuario)  + "estara baneado de: " + str(typeMuteo) + "con este tiempo: " + str(tiempoban) )
     
     if level == 4 :
     
         typeMuteo = setTypeMute(typeMute)
         tiempoban = setTempBan(0,0,0,7,0,0)
-    
         print("El usuario tiene un ban de nivel 4 " + str(idUsuario)  + "estara baneado de: " + str(typeMuteo) + "con este tiempo: " + str(tiempoban) )
     
     if level == 5 :
     
         typeMuteo = setTypeMute(typeMute)
         tiempoban = setTempBan(0,0,0,0,1,0)
-    
         print("El usuario tiene un ban de nivel 5 " + str(idUsuario)  + "estara baneado de: " + str(typeMuteo) + "con este tiempo: " + str(tiempoban) )
     
     if level == 6 :
     
         typeMuteo = setTypeMute(typeMute)
         tiempoban = setTempBan(0,0,0,0,3,0)
-    
         print("El usuario tiene un ban de nivel 6 " + str(idUsuario)  + "estara baneado de: " + str(typeMuteo) + "con este tiempo: " + str(tiempoban) )
     
     if level == 7 :
     
         typeMuteo = setTypeMute(typeMute)
         tiempoban = setTempBan(0,0,0,0,0,1)
-    
         print("El usuario tiene un ban de nivel 7 " + str(idUsuario)  + "estara baneado de: " + str(typeMuteo) + "con este tiempo: " + str(tiempoban) )
     
 
