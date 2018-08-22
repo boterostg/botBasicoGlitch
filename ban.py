@@ -13,7 +13,7 @@ def setTempBan(secB,minB,hourB,dayB,monthB,yearB):
   
   now = datetime.datetime.now()               #Fecha de hoy.
 
-  #Separamos por partes la fecha y hora de hoy 
+  #Separamos por partes la fecha y LA hora de hoy 
   HoyAno =  now.year                            
   HoyMes = now.month
   HoyDia = now.day
