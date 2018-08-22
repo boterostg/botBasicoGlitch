@@ -2,7 +2,7 @@
 import datetime                          
 import time
 
-############ EJEMPLO PARA ENTENDER COMO SE TRANSFORMA UNA FECHA A FECHA UNIX ###############################################
+############ EJEMPLO PARA ENTENDER COMO SE TRANSFORMA UNA FECHA A FECHA TIPO UNIX ##########################################
 ##                                                                                                                        ##
 ## dt = datetime.datetime(2018, 8, 21, 16, 00)  #Ejemplo de una fecha.                                                    ##
 ## unixTime = time.mktime(dt.timetuple())       #Conversión de esa fecha a Unix.                                          ##
