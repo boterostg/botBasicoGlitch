@@ -4,9 +4,13 @@ import time
 
 def setTempBan(secB,minB,hourB,dayB,monthB,yearB):
   
-  dt = datetime.datetime(2018, 8, 21, 16, 00) #Ejemplo de una fecha.
-  unixTime = time.mktime(dt.timetuple())      #Conversión de esa fecha a Unix.
-
+############ Ejemplo para entender como se transforma la fecha en Unix #####################################################
+##                                                                                                                        ##
+## dt = datetime.datetime(2018, 8, 21, 16, 00) #Ejemplo de una fecha.                                                     ##
+## unixTime = time.mktime(dt.timetuple())      #Conversión de esa fecha a Unix.                                           ##
+##                                                                                                                        ##
+############################################################################################################################
+  
   now = datetime.datetime.now()               #Fecha de hoy.
 
   #Separamos por partes la fecha y hora de hoy 
