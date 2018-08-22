@@ -1,3 +1,5 @@
+#IMPORTACIONES
+
 import telebot
 from telebot import *
 from os import environ
