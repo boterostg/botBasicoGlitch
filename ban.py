@@ -83,6 +83,61 @@ def setTypeMute(typeMute):
 typeBan = setTypeMute("message")
 
 
+def banlevel(idChatGroup,idUser,level,typeMute):
+    
+    cid = idChatGroup
+    idUsuario =idUser
+    
+    if level == 1 :
+        
+        typeMuteo = setTypeMute(typeMute)
+        tiempoban = setTempBan(0,30,0,0,0,0)
+        
+        print("El usuario tiene un ban de nivel 1 " + str(idUsuario)  + "estara baneado de: " + str(typeMuteo) + "con este tiempo: " + str(tiempoban) )
+        
+    if level == 2 :
+    
+        typeMuteo = setTypeMute(typeMute)
+        tiempoban = setTempBan(0,0,8,0,0,0)
+    
+        print("El usuario tiene un ban de nivel 2 " + str(idUsuario)  + "estara baneado de: " + str(typeMuteo) + "con este tiempo: " + str(tiempoban) )
+    
+    if level == 3 :
+    
+        typeMuteo = setTypeMute(typeMute)
+        tiempoban = setTempBan(0,0,0,1,0,0)
+    
+        print("El usuario tiene un ban de nivel 3 " + str(idUsuario)  + "estara baneado de: " + str(typeMuteo) + "con este tiempo: " + str(tiempoban) )
+    
+    if level == 4 :
+    
+        typeMuteo = setTypeMute(typeMute)
+        tiempoban = setTempBan(0,0,0,7,0,0)
+    
+        print("El usuario tiene un ban de nivel 4 " + str(idUsuario)  + "estara baneado de: " + str(typeMuteo) + "con este tiempo: " + str(tiempoban) )
+    
+    if level == 5 :
+    
+        typeMuteo = setTypeMute(typeMute)
+        tiempoban = setTempBan(0,0,0,0,1,0)
+    
+        print("El usuario tiene un ban de nivel 5 " + str(idUsuario)  + "estara baneado de: " + str(typeMuteo) + "con este tiempo: " + str(tiempoban) )
+    
+    if level == 6 :
+    
+        typeMuteo = setTypeMute(typeMute)
+        tiempoban = setTempBan(0,0,0,0,3,0)
+    
+        print("El usuario tiene un ban de nivel 6 " + str(idUsuario)  + "estara baneado de: " + str(typeMuteo) + "con este tiempo: " + str(tiempoban) )
+    
+    if level == 7 :
+    
+        typeMuteo = setTypeMute(typeMute)
+        tiempoban = setTempBan(0,0,0,0,0,1)
+    
+        print("El usuario tiene un ban de nivel 7 " + str(idUsuario)  + "estara baneado de: " + str(typeMuteo) + "con este tiempo: " + str(tiempoban) )
+    
+
 #Funcion para configurar el flood de cada grupo
 def antiFloodConfig(idChatGroup,numMessages,typeMute,timeBan):
   
