@@ -9,6 +9,7 @@ import time
 ##                                                                                                                        ##
 ############################################################################################################################
 
+#Función que recoge los parametros del tiempo asignado a un baneo y lo combierte al tiempo de sanción tiempo en formato Unix.
 def setTempBan(secB,minB,hourB,dayB,monthB,yearB):
 
   now = datetime.datetime.now()               #Fecha de hoy.
