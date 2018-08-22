@@ -39,3 +39,78 @@ def setTempBan(secB,minB,hourB,dayB,monthB,yearB):
   
   return unixBan        #Devolvemos el valor del tiempo de la sanción del baneado en Unix.
 
+
+#Función para definir el tipo de muteo.
+def setTypeMute(typeMute):
+  
+    sendMessages = False
+    sendMedia = False
+    sendOtherMessages = False
+    sendWebPage = False
+    
+    typeBanList = [["sendMessages",sendMessages],["sendMedia",sendMedia],["sendOtherMessages",sendOtherMessages],["sendWebPage",sendWebPage]]
+    
+    print(typeBanList)
+    
+    if typeMute == "all":
+        print("Entramos en all")
+        typeBanList = [ [x[0],True] if x[1] == False else x for x in typeBanList ]
+        
+    elif typeMute == "media":
+        print("Entramos en media")
+        
+        typeBanList = [ [x[0],True] if x[0] == "sendMedia" else x for x in typeBanList ]
+        
+    elif typeMute == "other":
+        print("Entramos en media")
+        
+        typeBanList = [ [x[0],True] if x[0] == "sendOtherMessages" else x for x in typeBanList ]
+        
+    elif typeMute == "web":
+        print("Entramos en media")
+        
+        typeBanList = [ [x[0],True] if x[0] == "sendWebPage" else x for x in typeBanList ]
+        
+    elif typeMute == "message":
+        print("Entramos en media")
+        
+        typeBanList = [ [x[0],True] if x[0] == "sendMessages" else x for x in typeBanList ]
+ 
+    print(typeBanList)
+    
+    return typeBanList
+    
+typeBan = setTypeMute("message")
+
+
+#Funcion para configurar el flood de cada grupo
+def antiFloodConfig(idChatGroup,numMessages,typeMute,timeBan):
+  
+  db_config = read_db_config()
+ 
+    # prepare query and data
+    query = """ UPDATE Group
+                SET maxMessages = %s, mute = typeMute
+                WHERE id = %s """
+ 
+    data = (title, book_id)
+ 
+    try:
+        conn = MySQLConnection(**db_config)
+ 
+        # update book title
+        cursor = conn.cursor()
+        cursor.execute(query, data)
+ 
+        # accept the changes
+        conn.commit()
+ 
+    except Error as error:
+        print(error)
+ 
+    finally:
+        cursor.close()
+        conn.close()
+
+
+
