@@ -4,7 +4,7 @@ import time
 
 def setTempBan(secB,minB,hourB,dayB,monthB,yearB):
   
-############ Ejemplo para entender como se transforma la fecha en Unix #####################################################
+############ EJEMPLO PARA ENTENDER COMO SE TRANSFORMA UNA FECHA A FECHA UNIX ###############################################
 ##                                                                                                                        ##
 ## dt = datetime.datetime(2018, 8, 21, 16, 00) #Ejemplo de una fecha.                                                     ##
 ## unixTime = time.mktime(dt.timetuple())      #Conversión de esa fecha a Unix.                                           ##
