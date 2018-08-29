@@ -1,5 +1,3 @@
-#IMPORTACIONES
-
 import telebot
 from telebot import *
 from os import environ
@@ -9,21 +7,39 @@ from random import randrange
 import json
 import requests
 
+from configBan import *
+
+
 bot = telebot.TeleBot(environ['TELEGRAM_TOKEN']) #Token del bot 
 
 # Variable que se utilizará en el comando /start para enviarlo como el texto del mensaje del bot
 bot_text = '''				
-El bot está creado en https://glitch.com/~{}
+Howdy, how are you doing?
+Source code on https://glitch.com/~{}
 '''.format(environ['PROJECT_NAME'])
 
-#Keyboard del menú
+
+
 menuKeyboard = types.InlineKeyboardMarkup()
 menuKeyboard.add(types.InlineKeyboardButton('Ayuda', callback_data='ayuda'),
            types.InlineKeyboardButton('Creador', callback_data='creador'))
 
-#Keyboard para apuntarse a la lista
 yoNuncaKeyboard = types.InlineKeyboardMarkup()
 yoNuncaKeyboard.add(types.InlineKeyboardButton('Me apunto', callback_data='yo'))
+
+propuestaInlineKeyboard = types.InlineKeyboardMarkup()
+propuestaInlineKeyboard.add(types.InlineKeyboardButton('Me apunto', callback_data='inlineApuntado'))
+
+
+
+  
+
+
+@bot.message_handler(commands=['menu'])
+def menu(m):
+
+  cid = m.chat.id
+  bot.send_message(cid, "Menu", reply_markup=menuKeyboard, parse_mode="Markdown")
 
 @bot.callback_query_handler(func=lambda call: call.data in ['ayuda', 'creador'])
 def callback_handlerMenu(call):
@@ -44,9 +60,349 @@ def callback_handlerMenu(call):
     #bot.send_message(cid, "Entramos en  " + str(info))
     
     bot.edit_message_text("Mi creador es : @batichico" , cid, mid, reply_markup=menuKeyboard , parse_mode="Markdown")
-	
-	
-# Inicio lección 1- 19/07/2018
+  
+
+@bot.inline_handler(lambda query: query.query.startswith('propuesta') and len(query.query.split()) > 1)
+def function_propuesta(q):
+
+  cid = q.from_user.id
+  txt = q.query.split(None, 1)[1]
+
+  keyboard = types.InlineKeyboardMarkup()
+  keyboard.add(types.InlineKeyboardButton("Me apunto", callback_data="propuesta {}".format(txt)))
+
+  article = types.InlineQueryResultArticle(1, "Enviar propuesta", types.InputTextMessageContent(txt), reply_markup=keyboard)
+  bot.answer_inline_query(q.id, [article], cache_time=1)
+
+
+  
+  
+@bot.callback_query_handler(func=lambda call: call.data.startswith('propuesta'))
+def function_button(call):
+  
+  mensaje = call.data.split(None, 1)[1]
+
+  
+
+  idUsuario = call.from_user.id
+  nombreUsuario = call.from_user.username
+  nombreUsuario = "@"+nombreUsuario
+  
+  todoCall = call
+  print(str(todoCall))
+  
+ 
+  mid = call.inline_message_id
+  
+  
+  contenido = mensaje + "\n\n"
+  
+  apuntados = mensaje.split("\n\n")[1:]
+  
+  #bot.answer_callback_query(call.id , str(mensaje) , show_alert=True)
+  
+  if nombreUsuario not in mensaje:
+  
+    mensaje = contenido  + nombreUsuario
+     
+    bot.answer_callback_query(call.id , "Vamos a apuntarte, apuntados: " + str(apuntados)  , show_alert=True)
+    bot.edit_message_text(mensaje,  inline_message_id=call.inline_message_id , reply_markup=propuestaInlineKeyboard, parse_mode="Markdown")
+    
+    
+    apuntados = mensaje.split("\n\n")[1:]
+  
+  
+  else :
+
+    apuntadosS = ""
+
+    apuntados = mensaje.split("\n\n")[1:]
+
+    contenido = mensaje.split("\n\n")[0]
+
+    contenido = contenido + "\n\n"
+
+    apuntados.remove(str(nombreUsuario))
+  
+    
+    bot.answer_callback_query(call.id , str(apuntados) , show_alert=True)
+                      
+   
+     
+    
+    '''
+    
+  
+  
+  mid = call.message.message_id
+  mensaje = call.message.text
+  
+  contenido = mensaje + "\n\n"
+  
+  apuntados = mensaje.split("\n\n")[1:]
+  
+  
+    else :
+
+      apuntadosS = ""
+
+      apuntados = mensaje.split("\n\n")[1:]
+
+      contenido = mensaje.split("\n\n")[0]
+
+      contenido = contenido + "\n\n"
+
+      apuntados.remove(str(nombreUsuario))
+
+      if len(apuntados) == 0 :
+
+        bot.edit_message_text(contenido, cid, mid, reply_markup=yoNuncaKeyboard, parse_mode="Markdown")
+
+      elif len(apuntados) == 1 :
+          mensaje = contenido  + apuntados[0]
+          bot.edit_message_text(mensaje, cid, mid, reply_markup=yoNuncaKeyboard, parse_mode="Markdown")
+
+      elif len(apuntados) >= 1 : 
+        for apuntado in apuntados:
+          apuntadosS = apuntadosS + apuntado + "\n\n" 
+
+        mensaje = contenido  + apuntadosS
+        bot.edit_message_text(mensaje, cid, mid, reply_markup=yoNuncaKeyboard, parse_mode="Markdown")
+
+    
+    
+    
+    
+ 
+  
+  
+  
+  
+  
+
+  else :
+    
+    apuntadosS = ""
+    
+    apuntados = mensaje.split("\n\n")[1:]
+    
+    contenido = mensaje.split("\n\n")[0]
+    
+    contenido = contenido + "\n\n"
+    
+    apuntados.remove(str(nombreUsuario))
+                      
+    if len(apuntados) == 0 :
+      
+      bot.edit_message_text(contenido, cid, mid, reply_markup=yoNuncaKeyboard, parse_mode="Markdown")
+      
+    elif len(apuntados) == 1 :
+        mensaje = contenido  + apuntados[0]
+        bot.edit_message_text(mensaje, cid, mid, reply_markup=yoNuncaKeyboard, parse_mode="Markdown")
+        
+    elif len(apuntados) >= 1 : 
+      for apuntado in apuntados:
+        apuntadosS = apuntadosS + apuntado + "\n\n" 
+
+      mensaje = contenido  + apuntadosS
+      bot.edit_message_text(mensaje, cid, mid, reply_markup=yoNuncaKeyboard, parse_mode="Markdown")
+     
+  '''
+  
+@bot.callback_query_handler(func=lambda call: call.data in ['yosi'])
+def callback_handlerYoNunca(call):
+  
+  cid = call.message.chat.id
+  idUsuario = call.from_user.id
+  nombreUsuario = call.from_user.first_name	
+  
+  mid = call.message.message_id
+  mensaje = call.message.text
+  
+  arrayApuntados = arrayUsuarios
+  
+  nombreUsuarioClick = call.message.from_user.first_name	
+  
+  if idUsuario not in arrayApuntados or len(arrayApuntados) == 0 :
+
+    añadirUser = {mid:{idUsuario:nombreUsuario}}
+
+    arrayApuntados.append(añadirUser)
+    
+    nombreNuevoUser = arrayApuntados[-1][mid][idUsuario]
+
+    mensaje = mensaje + "\n\n" + nombreNuevoUser
+    bot.edit_message_text(mensaje, cid, mid, reply_markup=yoNuncaKeyboard, parse_mode="Markdown")
+
+    bot.send_message(cid, str(arrayApuntados))
+
+  elif idUsuario in arrayApuntados :
+    arrayApuntados.pop(idUsuario)
+    
+ 
+
+@bot.callback_query_handler(func=lambda call: call.data in ['inlineApuntado'])
+def callback_handlerPropuesta(call):
+  
+  print("Entramos en handler")
+  
+  print("CALL: " + str(call))
+  
+  print(str(call.id))
+  
+  #cid = call.message.chat.id
+  idUsuario = call.from_user.id
+  nombreUsuario = call.from_user.username
+  nombreUsuario = "@"+nombreUsuario
+  
+  print(str(nombreUsuario))
+    
+  mid = call.inline_message_id
+  
+  print(str(mid))
+  
+  #mensaje = call.message.text
+  
+  #mensaje = call.data.split(None, 1)[1]
+  
+  mensaje = call.data
+  
+  
+  contenido = mensaje + "Contenido\n\n"
+  
+  #contenido = mensaje + "\n\n"
+  
+  apuntados = mensaje.split("\n\n")[1:]
+  
+  print("Apuntados: " + str(apuntados))
+  
+  
+  #bot.answer_callback_query(mid , str(apuntados) , show_alert=True)
+  
+  if nombreUsuario not in mensaje:
+    
+    print ("entramos en if" + nombreUsuario + "\n" + mensaje)
+    
+    mensaje = contenido  + nombreUsuario
+    
+    apuntados = mensaje.split("\n\n")[1:]
+
+    print("Mensaje metido: " + mensaje)
+    
+    print("Apuntados: " + str(apuntados))
+    
+    #bot.answer_callback_query(call.id , "Vamos a apuntarte, apuntados: " + str(apuntados)  , show_alert=True)
+    bot.edit_message_text(mensaje,  inline_message_id=call.inline_message_id , reply_markup=propuestaInlineKeyboard, parse_mode="Markdown")
+    
+    print("Mensaje despues metido: " + mensaje)
+    
+    #bot.edit_message_text(mensaje,  inline_message_id=mid, reply_markup=propuestaInlineKeyboard, parse_mode="Markdown")
+
+    #bot.edit_message_text(mensaje, cid, mid, reply_markup=propuestaInlineKeyboard, parse_mode="Markdown")
+
+    
+    
+  else :
+  
+    #print ("entramos en else")
+    
+    apuntadosS = ""
+
+    apuntados = mensaje.split("\n\n")[1:]
+    
+    #print (apuntados)
+
+    contenido = mensaje.split("\n\n")[0]
+
+    contenido = contenido + "\n\n"
+
+    apuntados.remove(str(nombreUsuario))
+
+    if len(apuntados) == 0 :
+
+      bot.edit_message_text(contenido, cid, mid, reply_markup=propuestaInlineKeyboard, parse_mode="Markdown")
+
+    elif len(apuntados) == 1 :
+        mensaje = contenido  + apuntados[0]
+        bot.edit_message_text(mensaje, cid, mid, reply_markup=propuestaInlineKeyboard, parse_mode="Markdown")
+
+    elif len(apuntados) >= 1 : 
+      for apuntado in apuntados:
+        apuntadosS = apuntadosS + apuntado + "\n\n" 
+
+      mensaje = contenido  + apuntadosS
+      bot.edit_message_text(mensaje, cid, mid, reply_markup=propuestaInlineKeyboard, parse_mode="Markdown")
+
+
+
+
+
+
+
+@bot.callback_query_handler(func=lambda call: call.data in ['yo'])
+def callback_handlerYoNunca(call):
+  
+  cid = call.message.chat.id
+  idUsuario = call.from_user.id
+  
+  if (call.from_user.username is None):
+    bot.answer_callback_query(call.id, "Tienes que tener nickname, @ lo que sea", show_alert=True)
+  else:
+    nombreUsuario = call.from_user.username
+    nombreUsuario = "@"+nombreUsuario
+
+    mid = call.message.message_id
+    mensaje = call.message.text
+
+    contenido = mensaje + "\n\n"
+
+    apuntados = mensaje.split("\n\n")[1:]
+
+
+    if nombreUsuario == "@elraro":
+
+      #print(str(call.id) + " " + nombreUsuario)
+      bot.answer_callback_query(call.id, "HDP", show_alert=True)
+
+    else:
+
+      if nombreUsuario not in mensaje:
+
+        mensaje = contenido  + nombreUsuario
+        bot.edit_message_text(mensaje, cid, mid, reply_markup=yoNuncaKeyboard, parse_mode="Markdown")
+
+        apuntados = mensaje.split("\n\n")[1:]
+      else :
+
+        apuntadosS = ""
+
+        apuntados = mensaje.split("\n\n")[1:]
+
+        contenido = mensaje.split("\n\n")[0]
+
+        contenido = contenido + "\n\n"
+
+        apuntados.remove(str(nombreUsuario))
+
+        if len(apuntados) == 0 :
+
+          bot.edit_message_text(contenido, cid, mid, reply_markup=yoNuncaKeyboard, parse_mode="Markdown")
+
+        elif len(apuntados) == 1 :
+            mensaje = contenido  + apuntados[0]
+            bot.edit_message_text(mensaje, cid, mid, reply_markup=yoNuncaKeyboard, parse_mode="Markdown")
+
+        elif len(apuntados) >= 1 : 
+          for apuntado in apuntados:
+            apuntadosS = apuntadosS + apuntado + "\n\n" 
+
+          mensaje = contenido  + apuntadosS
+          bot.edit_message_text(mensaje, cid, mid, reply_markup=yoNuncaKeyboard, parse_mode="Markdown")
+
+# Inicio charla 1- 19/07/2018
+
+
+  
 
 @bot.message_handler(commands=['start', 'help']) 	# Comando /start o /help . Cuando un usuario escriba cualquiera de los comandos 							
 def send_welcome(message):			 	
@@ -58,31 +414,42 @@ def ayuda(message):
 	bot.reply_to(message, 'ahora mismo te ayudo')   # El bot responde 'ahora mismo te ayudo' al mensaje
   
 #Inicio charla 2 - 31/07/2018
-  
-#Comando para simular una ruleta rusa en grupos de Telegram
+
+
 @bot.message_handler(commands=['ruleta'])
 def ruleta(message):
 
-  cid = message.chat.id					#Id del chat
-  nombreUsuario = message.from_user.username		#Nicknmae del usuario
-  idUsuario = message.from_user.id			#Id del usuario
-  rnd = randrange(0, int(5))				#Generación de número aleatorio entre 0 y 5
+  cid = message.chat.id
+  nombreUsuario = message.from_user.username
+  idUsuario = message.from_user.id
+  rnd = randrange(0, int(5))
 
-  if rnd == 4:						#Si el número aleatorio es igual a 4
-	
-    bot.send_message(cid, "Pummmm estas muerto @" + nombreUsuario )	#El bot envía mensaje de que has muerto y añade el nickname del usuario en el mensaje
-    bot.kick_chat_member(cid,idUsuario)					#El bot expulsa al usuario del grupo restringiendolo del grupo
-    bot.unban_chat_member(cid, idUsuario)				#El bot quita la restrinción al usuario para que así pueda volver al grupo
+  if rnd == 4:
+    bot.send_message(cid, "Pummmm tas muelto @" + nombreUsuario )
+    bot.kick_chat_member(cid,idUsuario)
+    bot.unban_chat_member(cid, idUsuario)
 
-  else:									#Si el número aleatorio es diferente de 4
+  else:
 
-    bot.send_message(cid, "Te has salvado amigo @" + nombreUsuario)	#El bot envía un mensaje diciendo que se ha salvado añadiendo el nickname del usuario
+    bot.send_message(cid, "Te has salvado amijo @" + nombreUsuario)
   
 #Fin charla 2 - 31/07/2018
   
 @bot.message_handler(func=lambda message: True)		# Respuestas del bot
 def echo_message(message):
   cid = message.chat.id 				# Guardamos en la variale cid el id de el mensaje recibido 
+  idUsu = message.from_user.id
+  
+  if message.text.lower() ==  "bot vete" :
+    
+    if idUsu== 239822769:
+      bot.send_message(cid, 'vale :C, adios mi gente!')	
+      bot.leave_chat(cid)
+    
+  
+  if "ban" in message.text.lower().split() :	
+    
+    bot.send_message(cid, 'estas ban')	
   
   if message.text.lower() == "holi":			# Comparamos el texto el mensaje si es igual a 'holi'
    
@@ -95,7 +462,7 @@ def echo_message(message):
 
     if id == 239822769:					# Comparamos el id guardado del usuario con un id que le hemos pasado
 		
-        bot.send_message( cid, 'Hola mi creador 😙')    # Si es igual responde el mensaje que hemos introducido al chat indicado
+        bot.send_message( cid, 'Hola mi creador 😙')	# Si es igual responde el mensaje que hemos introducido al chat indicado
         
     elif id == 270803389 :				# En este caso el id lo comparamos con otra id diferente 
 	
@@ -112,43 +479,59 @@ def echo_message(message):
 		
     bot.send_message( cid, 'mensaje')			# Si es así contestará 'mensaje'
     
-	
-#Fin lección 1 - 19/07/218
-
-#Inicio charla 3 - 08/08/2018
-  if message.text.lower().startswith('participo con el numero'): #Escribimos Participo con el numero X (El que sea dentro del 0-10
-
-      cid = message.chat.id					 # Guardamos en la variale cid el id de el mensaje recibido.
-      mensaje=message.text                                       # Guardamos el mensaje completo.
-      rnd = randrange(0, int(11))				 # Generamos un número aleatorio del 0 al 10.
-      respuesta = ' '.join(mensaje.split(" ")[4:])               # Obtenemos el numero X del mensaje indicado.
-
-      # Comparamos el número obtenido con el número aleatorio.
-
-      if int(respuesta) == rnd:					 # Si el número obtenido == número aleatorio.
-        bot.send_message(cid, "Has acertado")			 # El bot envía el mensaje "Has acertado".
-
-      else:							 # Por no es igual.
-	
-        bot.send_message(cid, "Has fallado, el número era " + str(rnd)) # El bot envía el mensaje Has fallado, el número era (el número correspondiente)
-
-#Fin charla 3 - 08/08/2018
-
-
-#Inicio charla 2 - 31/07/2018
-
-
-  if message.text.lower().startswith('bot di'):        # Comprobamos si el texto el empieza por "bot di"
+  
     
-    cid = message.chat.id                              #Id del chat
-    mensaje=message.text                               #Mensaje completo
+	
+#Fin charla 1 - 19/07/218
+  if message.text.lower().startswith('/'):
+    idMensaje = message.message_id
+    idUsuario = call.from_user.id
+    
+    bot.delete_message(cid,idMensaje)
+    
+    dt = datetime.datetime(2018, 8, 21, 16, 00)
+    unixTime = time.mktime(dt.timetuple())
+    
+    bot.restrict_chat_member(self, cid, idUsuario, until_date=None, can_send_messages=False,
+                             can_send_media_messages=False, can_send_other_messages=False,
+                             can_add_web_page_previews=False)
+    
+  #Inicio charla 3 - 08/08/2018
+  if message.text.lower().startswith('participo con el numero'):
 
-    respuesta = ' '.join(mensaje.split(" ")[2:])       #Respuesta = el texto que venga detrás de bot di.
-						       #Ejemplo bot di hola. Con este código se guardará el "hola" porque se guardará
-						       # todo lo que se escriba a partir del tercer espacio.
-			
-    bot.send_message(cid, respuesta)                   #El bot envía la respuesta
+      cid = message.chat.id
+      mensaje=message.text
+      rnd = randrange(0, int(9))
+      respuesta = ' '.join(mensaje.split(" ")[4:])
 
+      #bot.send_message(cid, "la respuesta es: " + respuesta)
+      #bot.send_message(cid, str(rnd))
+
+      if int(respuesta) == rnd:
+        bot.send_message(cid, "Has acertado")
+
+      else:
+        bot.send_message(cid, "Has fallado, el número era " + str(rnd))
+
+  #Fin charla 3 - 08/08/2018
+  
+  if message.text.lower().startswith("propuesta") and len(message.text)>1:
+      cid = message.chat.id
+      nombre = message.from_user.first_name
+      mensaje = message.text
+      
+      respuesta = ' '.join(mensaje.split(" ")[1:])
+
+      bot.send_message(cid, respuesta, reply_markup=yoNuncaKeyboard, parse_mode="Markdown")
+
+  #Inicio charla 2 - 31/07/2018
+
+  if "boti di" in message.text.lower():               # Comparamos el texto el mensaje si es igual a "boti di"
+
+      cid = message.chat.id                              #Id del chat
+      mensaje=message.text                               #Mensaje completo
+      respuesta = ' '.join(mensaje.split(" ")[2:])       #Respuesta
+      bot.send_message(cid, respuesta)                   #El bot envía la respuesta
 
 
 #Respuesta a la entrada de un usuario al grupo 
@@ -157,7 +540,32 @@ def command_bienvenida(m):
     cid = m.chat.id                                    #Id del chat
     cname = m.chat.title                               #Nombre del grupo
     bienvenida = ""                                    #Variable dónde guardaremos el mensaje de bienvenida
+
+    infoMesaje = str(m)
     
+    nuevoUsuarioId = m.new_chat_member.id
+    nuevoUsuarioName = m.new_chat_member.username
+    añadidoPorId = m.from_user.id
+    añadidoPor = m.from_user.username
+    
+    #bot.send_message(cid, infoMesaje) 
+    if nuevoUsuarioName == "Botinutilbot":
+     
+      if cid != -1001318959349:
+        
+        bot.send_message(cid, añadidoPor + " , para que hostias me metes, este no es mi grupo joderrr!")
+        bot.leave_chat(cid)
+      
+      
+    if añadidoPorId == nuevoUsuarioId:
+      bot.send_message(cid, 'Entrado por enlace de invitación') 
+      
+      
+      #bot.send_message(cid, infoMesaje) 
+    else:
+      bot.send_message(cid, 'añadido por: ' + añadidoPor) 
+      bot.send_message(cid, str(cid)) 
+      
     if (m.new_chat_member.username is None):           #Si el usuario no tiene nickname
         nun = m.new_chat_member.first_name             #Guardamos el primer nombre del usuario
         
@@ -177,6 +585,7 @@ def command_bienvenida(m):
 
     bot.send_message(cid, str(bienvenida) + str(nun))  #Se envía el mensaje de bienvenida concatenando el nombre/nickname del usuario
 
+    
 #Respuesta a la salida de un usuario del grupo 
 @bot.message_handler(func=lambda message: True, content_types=['left_chat_member'])
 def command_bye(m):
@@ -197,7 +606,38 @@ def command_bye(m):
 
     bot.send_message(cid, str(despedida) + str(nun))   #Se envía el mensaje de despedida concatenando el nombre/nickname del usuario
 
- #Fin charla 2 - 31/07/2018
- 
+  
+#Fin charla 2 - 31/07/2018
+
+'''
+
+APUNTESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSs
+
+import random
+from itertools import izip_longest
+
+def grouper(iterable, n, fillvalue=None):
+    "Collect data into fixed-length chunks or blocks"
+    # Taken from itertools recipes:
+    # https://docs.python.org/2/library/itertools.html#recipes
+    # grouper('ABCDEFG', 3, 'x') --> ABC DEF Gxx
+    args = [iter(iterable)] * n
+    return izip_longest(fillvalue=fillvalue, *args)
+
+apuntados = ["peter","alice","andy","patxi","richard","ana"]
+parejas = ""
+
+print(str(apuntados))
+
+random.shuffle(apuntados)
+print(len(apuntados))
+if len(apuntados) >1:
+    for primero, segundo in grouper(apuntados, 2):
+        parejas = parejas + str(primero) +  " y " + str(segundo) +"\n"
+else:
+      bot.send_message(cid,"solo hay uno")
+print(parejas)
+
+'''
   
 bot.set_webhook("https://{}.glitch.me/{}".format(environ['PROJECT_NAME'], environ['TELEGRAM_TOKEN']))

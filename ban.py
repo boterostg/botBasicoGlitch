@@ -1,40 +1,35 @@
-#Importaciones.
-import datetime                          
+import datetime
 import time
+dt = datetime.datetime(2018, 8, 21, 16, 00)
+unixTime = time.mktime(dt.timetuple())
 
-############ EJEMPLO PARA ENTENDER COMO SE TRANSFORMA UNA FECHA A FECHA TIPO UNIX ##########################################
-##                                                                                                                        ##
-## dt = datetime.datetime(2018, 8, 21, 16, 00)  #Ejemplo de una fecha.                                                    ##
-## unixTime = time.mktime(dt.timetuple())       #Conversión de esa fecha a Unix.                                          ##
-##                                                                                                                        ##
-############################################################################################################################
+now = datetime.datetime.now()
 
-#Función que recoge los parametros del tiempo asignado a un baneo y lo combierte al tiempo de sanción tiempo en formato Unix.
-def setTempBan(secB,minB,hourB,dayB,monthB,yearB):
+HoyAno =  now.year
+HoyMes = now.month
+HoyDia = now.day
+HoyHora = now.hour
+HoyMinuto = now.minute
+HoySegundo = now.second
+HoyMicrosegundo = now.microsecond
 
-  now = datetime.datetime.now()               #Fecha de hoy.
+#sancion 
 
-  #Separamos por partes la fecha y LA hora de hoy 
-  HoyAno =  now.year                            
-  HoyMes = now.month
-  HoyDia = now.day
-  HoyHora = now.hour
-  HoyMinuto = now.minute
-  HoySegundo = now.second
-  HoyMicrosegundo = now.microsecond
-  
-  #A continuación creamos nuevas variables para asignar la sanción de tiempo que queramos añadiendo los parámetros recogidos al principio de la función.
-  banAno = HoyAno + yearB
-  banMes = HoyMes + monthB
-  banDia = HoyDia + dayB
-  banHora = HoyHora + hourB
-  banMinuto = HoyMinuto + minB     
-  banSegundo = HoySegundo + secB
 
-  fechaBan = dt = datetime.datetime(banAno, banMes, banDia, banHora, banMinuto,banSegundo) # Al igual que en el ejemplo de arriba, añadimos los parametros de la feha.
-  unixBan = time.mktime(fechaBan.timetuple()) #Convertimos la fecha del ban a Unix para luego asignarlo como parametro al baneo que hará el bot.
+banAno = HoyAno 
+banMes = HoyMes
+banDia = HoyDia 
+banHora = HoyHora 
+banMinuto = HoyMinuto + 10
+banSegundo = HoySegundo 
 
-  print("fecha ban :" + str(fechaBan)) #Printeamos el resultado de la fecha del ban para asegurar que está bien.
-  print(unixBan)                       #Printeamos el resultado de la fecha Unix del ban para asegurar que está bien.
-  
-  return unixBan        #Devolvemos el valor del tiempo de la sanción del baneado en Unix.
+fechaBan = dt = datetime.datetime(banAno, banMes, banDia, banHora, banMinuto,banSegundo)
+unixBan = time.mktime(fechaBan.timetuple())
+
+print("fecha ban :" + str(fechaBan))
+print(unixBan)
+
+
+print(now)
+print("Unix Timestamp: ",unixTime)
+print()
