@@ -10,7 +10,7 @@
 
 ## 4.- Las funcionalidades del bot están en bot.py  -> https://github.com/boterostg/botBasicoGlitch/blob/master/bot.py y en https://glitch.com/~botbasico
 
-## *Este proyecto surge del grupo de Telegram http://t.me/boterostg . Dado que hay mucha gente con ganas de aprender, hemos decidido crear un bot desde cero con https://glitch.com/ y Python3. Se utilizará el bot como ejemplo mientras se dan clases/charlas y poco a poco irá aumentando el código de dicho bot. Cualquier duda sobre el código o gente interesada en colaborar solo tiene que entrar al grupo :)
+## *Este proyecto surge del grupo de Telegram http://t.me/boterostg . Dado que hay mucha gente con ganas de aprender, hemos decidido crear un bot desde cero con https://glitch.com/ y Python3. Se utilizará el bot como ejemplo mientras se dan clases/charlas y poco a poco irá aumentando el código de dicho bot. Cualquier duda sobre el código o gente interesada en colaborar solo tiene que entrar al grupo http://t.me/boterostg :)
 
 ## *Esto es posible gracias a https://github.com/sanguchi que creó toda la estructura del proyecto y el siguiente tutorial de como utilizarlo: http://telegra.ph/Creando-Bots-en-Telegram-06-09
 
@@ -120,4 +120,26 @@ def ruleta(message):
   else:								
 
     bot.send_message(cid, "Te has salvado amigo @" + nombreUsuario)	
+```
+
+## [3] Tercera clase 08/08/2018 Explicación de como utilizar split y random para simular un sorteo.
+
+```python
+@bot.message_handler(func=lambda message: True)		# Respuestas del bot
+def echo_message(message):
+    if message.text.lower().startswith('participo con el numero'):
+
+      cid = message.chat.id
+      mensaje=message.text
+      rnd = randrange(0, int(9))
+      respuesta = ' '.join(mensaje.split(" ")[4:])
+
+      #bot.send_message(cid, "la respuesta es: " + respuesta)
+      #bot.send_message(cid, str(rnd))
+
+      if int(respuesta) == rnd:
+	bot.send_message(cid, "Has acertado")
+
+    else:
+      bot.send_message(cid, "Has fallado, el número era " + str(rnd))
 ```
