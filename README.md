@@ -1,4 +1,7 @@
 # BOT BÁSICO PARA TELEGRAM 
+# [GRUPO DE TELEGRAM](http://t.me/boterostg)
+# [COMUNIDAD DE GITHUB](https://github.com/boterostg)
+# [CLASES](https://repl.it/community/classrooms/114961)
 
 ## Este bot esta creado con Python3 con el fin de mostrar ejemplos de funciones de bots de Telegram. A continuación sigue las indicaciones:
 
