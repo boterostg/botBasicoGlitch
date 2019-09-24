@@ -9,7 +9,7 @@
 
 ## 2.- Si habéis leído la explicación y habéis seguido todos los pasos ya podéis mirar el glitch del bot, entrad en este enlace https://glitch.com/~botbasico y luego pinchad en View Source para ver el proyecto del bot. Podéis mirar funciones que hay de ejemplo y adaptarlas a vuestro bot :D
 
-## 3.- Documentación: TELEGRAM BOT API (aquí está toda la información que se necesita para añadir funcionalidades a un bot): https://core.telegram.org/bots/api
+## 3.- Documentación: TELEGRAM BOT API (aquí está toda la información que se necesita para añadir funcionalidades a un bot): https://core.telegram.org/bots/api y aquí: https://github.com/eternnoir/pyTelegramBotAPI teneís la API que se usa para programar el bot en PYTHON
 
 ## 4.- Las funcionalidades del bot están en bot.py  -> https://github.com/boterostg/botBasicoGlitch/blob/master/bot.py y en https://glitch.com/~botbasico
 
